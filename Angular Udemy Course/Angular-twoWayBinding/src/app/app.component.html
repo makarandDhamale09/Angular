@@ -1,3 +1,18 @@
-<h1>Angular App</h1>
+<h1 class="text-blue">Angular App</h1>
+<!-- Class binding in Angular -->
+<h1 [class.text-blue]="bool">Angular App</h1>
+
+<!-- Style binding in Angular using DOM object style -->
+<h1 [style.color]="bool ? 'red' : 'blue'">Style Binding</h1>
 
 <p>{{ message }}</p>
+
+<img src="{{ imageUrl }}" alt="CarImage" />
+<!--Angular Property binding-->
+<img [src]="imageUrl" alt="CarImage" />
+
+<!-- Event Binding in Angular -->
+<button (click)="buttonClick()">Click Me</button>
+
+<!-- Event Filtering -->
+<input type="text" (keyup.enter)="onKeyup()" />
