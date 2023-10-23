@@ -13,11 +13,21 @@ export class AppComponent {
   //This way we can dynamically set the color
   bool: boolean = true;
 
+  userName: string = 'This is initial userName';
+
   buttonClick() {
     console.log('Button Clicked');
   }
 
   onKeyup() {
-    console.log('Enter key pressed');
+    console.log('Enter Key pressed');
+  }
+
+  keyPress(username: string) {
+    console.log(username);
+  }
+
+  twoWayData() {
+    console.log(this.userName);
   }
 }

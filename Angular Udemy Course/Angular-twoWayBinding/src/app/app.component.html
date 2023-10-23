@@ -8,7 +8,7 @@
 <p>{{ message }}</p>
 
 <img src="{{ imageUrl }}" alt="CarImage" />
-<!--Angular Property binding-->
+<!--Angular Property binding -- from model to view-->
 <img [src]="imageUrl" alt="CarImage" />
 
 <!-- Event Binding in Angular -->
@@ -16,3 +16,15 @@
 
 <!-- Event Filtering -->
 <input type="text" (keyup.enter)="onKeyup()" />
+
+<!-- Template variable -->
+<br />
+<span>Template variable</span>
+<br />
+<input type="text" (keyup.enter)="keyPress(username.value)" #username />
+
+<!-- Two way data binding from view to model and model to view-->
+<br />
+<span>Two way data binding</span>
+<br />
+<input type="text" [(ngModel)]="userName" (keyup.enter)="twoWayData()" />
