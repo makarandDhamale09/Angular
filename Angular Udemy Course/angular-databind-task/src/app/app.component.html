@@ -1,0 +1,29 @@
+<div class="form-area">
+  <h1>Post Form</h1>
+  <br /><br />
+  <input
+    type="text"
+    placeholder="Post Title"
+    [(ngModel)]="postTitle"
+  /><br /><br />
+  <textarea
+    cols="30"
+    rows="10"
+    placeholder="Post Details"
+    [(ngModel)]="postDetails"
+  ></textarea
+  ><br /><br />
+  <input
+    type="text"
+    placeholder="Post Image Url"
+    [(ngModel)]="imageURL"
+  /><br /><br />
+  <input type="text" placeholder="Post Url" [(ngModel)]="postUrl" /><br /><br />
+  <input type="checkbox" [(ngModel)]="addBackground" /> Add Background
+</div>
+
+<div class="preview-area">
+  <img class="image" [src]="imageURL" width="200px" height="300px" />
+  <h1>{{ postTitle }}</h1>
+  <p>{{ postDetails }}</p>
+</div>
