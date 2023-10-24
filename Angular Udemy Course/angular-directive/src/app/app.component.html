@@ -1,0 +1,36 @@
+<p>{{ postArray }}</p>
+
+<ul>
+  <li>{{ postArray[0] }}</li>
+  <li>{{ postArray[1] }}</li>
+  <li>{{ postArray[2] }}</li>
+  <li>{{ postArray[3] }}</li>
+  <li>{{ postArray[4] }}</li>
+</ul>
+
+<!-- Iterating over the array using ngFor directive -->
+<ul>
+  <li *ngFor="let post of postArray">{{ post }}</li>
+</ul>
+
+<button (click)="addNew()">Add New Data</button>
+
+<ul>
+  <li *ngFor="let post of objArray; let i = index">
+    {{ i }} {{ post.postTitle }}
+    <button (click)="onDelete(i)">Delete</button>
+  </li>
+</ul>
+
+<!-- ngIf directive -->
+<h3>ngIf directive</h3>
+<div *ngIf="objArray1.length > 0; else noData">
+  <ul>
+    <li *ngFor="let post of objArray1; let i = index">
+      {{ i }} {{ post.postTitle }}
+      <button (click)="onDelete(i)">Delete</button>
+    </li>
+  </ul>
+</div>
+<!-- Use of ngTemplate for else part of ngIf -->
+<ng-template #noData><p>There is no data to fetch...</p></ng-template>
