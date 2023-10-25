@@ -33,6 +33,9 @@ export class AppComponent {
 
   objArray1: Array<Post> = [];
 
+  stepForm!: string;
+  isActive: boolean = true;
+
   constructor() {
     for (let i = 0; i < this.postArray.length; i++) {
       console.log(this.postArray[i]);
@@ -48,6 +51,10 @@ export class AppComponent {
     //let index = this.objArray.indexOf(post);
     this.objArray.splice(index, 1);
     this.objArray1.splice(index, 1);
+  }
+
+  onClick(status: string) {
+    this.stepForm = status;
   }
 }
 

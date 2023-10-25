@@ -1,3 +1,16 @@
+<!-- Types od Directives in Angular
+  1. Structural Directive 
+  the directive that change the structure of DOM are called structural 
+  directives. They start with *
+
+  2. Attribute Directive
+  The Directives that change the appearance and the behavior of DOM 
+  element are called as Attribute Directives.They are used with []
+
+  ngStyle
+  ngClass
+-->
+
 <p>{{ postArray }}</p>
 
 <ul>
@@ -34,3 +47,45 @@
 </div>
 <!-- Use of ngTemplate for else part of ngIf -->
 <ng-template #noData><p>There is no data to fetch...</p></ng-template>
+
+<!-- ngSwitchCase -->
+<div>
+  <button (click)="onClick('step 1')">Step 1</button>
+  <button (click)="onClick('step 2')">Step 2</button>
+  <button (click)="onClick('step 3')">Step 3</button>
+</div>
+<br />
+<div [ngSwitch]="stepForm">
+  <div *ngSwitchCase="'step 1'">Step 1 Form</div>
+  <div *ngSwitchCase="'step 2'">Step 2 Form</div>
+  <div *ngSwitchCase="'step 3'">Step 3 Form</div>
+  <div *ngSwitchDefault>Something Else</div>
+</div>
+
+<!-- NgStyle Directive -->
+<p>NgStyle Directive</p>
+
+<h1
+  [style.color]="isActive ? 'red' : 'black'"
+  [style.textTransform]="isActive ? 'uppercase' : 'lowercase'"
+>
+  Angular Udemy Course
+</h1>
+
+<h1
+  [ngStyle]="{
+    color: isActive ? 'red' : 'black',
+    textTransform: isActive ? 'uppercase' : 'lowercase'
+  }"
+>
+  NgStyle Directive
+</h1>
+
+<!-- NgClass Directive -->
+<p>NgClass Directive</p>
+
+<h1 class="main" [class.text-weight]="isActive">Angular Udemy Course</h1>
+
+<h1 [ngClass]="{ main: isActive, 'text-weight': isActive }">
+  ngClass Directive
+</h1>
