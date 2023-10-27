@@ -45,3 +45,8 @@
 </div>
 
 <ng-template #noData><h4>No Data to display</h4> </ng-template>
+
+<!-- Custom Pipe -->
+<h3>{{ userDetails.city | append }}</h3>
+<br />
+<h3>{{ userDetails.city | appendCLI }}</h3>

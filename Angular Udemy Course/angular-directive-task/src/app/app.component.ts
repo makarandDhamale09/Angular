@@ -10,6 +10,12 @@ export class AppComponent {
   email!: string;
   address!: string;
 
+  userDetails = {
+    name: 'User 1',
+    city: 'Newyork',
+    countryCode: 'US',
+  };
+
   userArray: Array<User> = [];
 
   onClick() {
