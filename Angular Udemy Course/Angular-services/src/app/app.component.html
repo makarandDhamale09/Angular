@@ -2,10 +2,107 @@
 
 <!-- <app-post></app-post> <app-post-list></app-post-list> -->
 
-<!-- Angular Template Driven forms -->
+<!-- Angular Rective Form -->
+<h1>Angular Reactive Form</h1>
 <div class="container mt-5">
   <div class="form-area">
-    <form #f="ngForm" (submit)="onSubmit(f)">
+    <form [formGroup]="form" (ngSubmit)="onSubmitReactive()">
+      <div class="form-group">
+        <label> First Name *</label>
+        <input
+          name="fullName"
+          type="text"
+          placeholder="Full name"
+          class="form-control"
+          formControlName="fullName"
+          (change)="getValueReactive()"
+        />
+        <div
+          class="alert alert-danger"
+          *ngIf="fullname?.touched && fullname?.status === 'INVALID'"
+        >
+          <div *ngIf="fullname?.errors?.['required']">
+            Full Name is required
+          </div>
+          <div *ngIf="fullname?.errors?.['minlength']">
+            Full Name minlength must be 5
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Email *</label>
+        <input
+          type="email"
+          placeholder="Email"
+          class="form-control"
+          name="email"
+          formControlName="email"
+        />
+        <div
+          class="alert alert-danger"
+          *ngIf="
+            form.controls['email'].touched &&
+            form.controls['email'].status === 'INVALID'
+          "
+        >
+          <div *ngIf="form.controls['email'].errors?.['required']">
+            Email is required
+          </div>
+          <div *ngIf="form.controls['email'].errors?.['pattern']">
+            Invalid Email Address...
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Address *</label>
+        <textarea
+          cols="30"
+          rows="10"
+          placeholder="Address"
+          class="form-control"
+          formControlName="address"
+        ></textarea>
+        <div
+          class="alert alert-danger"
+          *ngIf="
+            form.controls['address'].touched &&
+            form.controls['address'].status === 'INVALID'
+          "
+        >
+          <div *ngIf="form.controls['address'].errors?.['required']">
+            Address is required..
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Skills</label>
+        <input
+          type="text"
+          class="form-control"
+          #skill
+          (keyup.enter)="addSkills(skill)"
+        />
+        <ul class="list-group">
+          <li
+            class="list-group-item"
+            *ngFor="let skill of Skills.controls; let i = index"
+          >
+            {{ skill.value }}
+            <a class="btn btn-sm btn-danger" (click)="removeSkills(i)">X</a>
+          </li>
+        </ul>
+      </div>
+      <button class="btn btn-primary" [disabled]="form.invalid">Submit</button>
+    </form>
+  </div>
+</div>
+
+<!-- Angular Template Driven forms -->
+<br /><br />
+<h1>Template Driven Form</h1>
+<div class="container mt-5">
+  <div class="form-area">
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)">
       <div class="form-group">
         <label> First Name *</label>
         <input
@@ -51,6 +148,9 @@
           #email="ngModel"
           pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
           required
+          [ngClass]="{
+            'is-invalid': email.touched && email.status === 'INVALID'
+          }"
         />
         <div *ngIf="email.errors?.['required']">
           <div
@@ -80,6 +180,9 @@
           name="address"
           #address="ngModel"
           required
+          [ngClass]="{
+            'is-invalid': address.touched && address.status === 'INVALID'
+          }"
         ></textarea>
         <div *ngIf="address.errors?.['required']">
           <div
@@ -90,7 +193,7 @@
           </div>
         </div>
       </div>
-      <button class="btn btn-primary">Submit</button>
+      <button class="btn btn-primary" [disabled]="f.invalid">Submit</button>
     </form>
   </div>
 </div>
